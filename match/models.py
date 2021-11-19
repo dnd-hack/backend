@@ -35,12 +35,18 @@ class Group(models.Model):
         (4, '40대'),
         (5, '50대'),
     )
+    GENDER = (
+        (1, '여성'),
+        (2, '남성'),
+    )
+
     title = models.CharField(help_text="모임 제목", max_length=30)
     content = models.CharField(help_text="모임 내용", max_length=200)
     url = models.URLField(max_length=200)
     grade = models.IntegerField(choices=GRADE, blank=True, null=True)
     age_range = models.IntegerField(choices=AGE_RANGE, blank=True, null=True)
     cheer = models.IntegerField(choices=TEAM, blank=True, null=True)
+    gender = models.IntegerField(choices=GENDER, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     organizer = models.ForeignKey('accounts.User', on_delete=models.CASCADE, related_name='matches')
@@ -48,9 +54,23 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
+    def joined_member_num(self):
+        joined_member_queryset = self.joined_member.all()
+        return joined_member_queryset.count() + 1
+
+    def is_joined(self, user_id):
+        joined_member_user_list = self.joined_member.all().values_list('user', flat=True)
+        if user_id in joined_member_user_list:
+            return True
+        elif (user_id==self.organizer.user_id):
+            return True
+        else :
+            return False
+
+
 
 class JoinedMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    date_joined = models.DateField()
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='joined_member' )
+    date_joined = models.DateField(auto_now_add=True)
 

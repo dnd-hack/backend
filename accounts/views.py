@@ -27,7 +27,6 @@ class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        # try :
         user_id = request.data['user_id']
         user = User.objects.filter(user_id=user_id)
         if (user):
@@ -39,5 +38,16 @@ class CustomUserCreate(APIView):
                                           password=password,
                                           username=nickname)
             return Response({"nickname": newuser.username})
-        # except:
-        #     return Response({"error":"none_id"})
+
+class IsIDExist(APIView):
+
+    def post(self, request):
+        id = request.data['id']
+        try:
+            user = User.objects.get(user_id=id)
+            if (user):
+                return Response({"result": True})
+            else :
+                return Response({"result": False})
+        except:
+            return Response({"result": False})
