@@ -25,7 +25,7 @@ SECRET_KEY = ')s*(v8x=2=s0ae21x3i-i_-^#$-k3#(s1jq_$dgy0_rt*!lcof'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hack-dnd.herokuapp.com']
 
 
 # Application definition
