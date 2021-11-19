@@ -31,7 +31,7 @@ class CustomAccountManager(BaseUserManager):
 class User(AbstractUser):
 
     user_id = models.CharField(max_length=20, unique=True, primary_key=True)
-    nickname = models.CharField(max_length=15, null=True, blank=True, unique=True)
+    username = models.CharField(max_length=15, null=True, blank=True, unique=True)
     password = models.CharField('비밀번호', max_length=200)
 
     objects = CustomAccountManager()

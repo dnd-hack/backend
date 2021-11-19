@@ -37,7 +37,7 @@ class CustomUserCreate(APIView):
             nickname = make_nick()
             newuser = User.objects.create(user_id=user_id,
                                           password=password,
-                                          nickname=nickname)
-            return Response({"nickname": nickname})
+                                          username=nickname)
+            return Response({"nickname": newuser.username})
         # except:
         #     return Response({"error":"none_id"})
