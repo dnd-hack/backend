@@ -57,16 +57,14 @@ class MatchList(APIView):
         return Response(group_list)
 
 class FilterMatch(APIView):
-    def post(self, request):
-        try:
-            user_id = request.data['user_id']
-        except:
-            user_id = ""
+    def get(self, request):
+        # try:
         group_queryset = Group.objects.all()
-        grade = filterNone(request.data, 'grade')
-        age_range = filterNone(request.data, 'age_range')
-        cheer = filterNone(request.data, 'cheer')
-        gender = filterNone(request.data, 'gender')
+        user_id=request.GET.get('user_id', '')
+        grade=request.GET.get('grade', 0)
+        age_range=request.GET.get('age_range', 0)
+        cheer=request.GET.get('cheer', 0)
+        gender=request.GET.get('gender', 0)
         if (grade):
             group_queryset = group_queryset.filter(grade=grade)
         if (age_range):
