@@ -17,16 +17,16 @@ class Group(models.Model):
         (9, '챌린저'),
     )
     TEAM = (
-            (1, 'DWF_KIA'),
-            (2, 'T1'),
-            (3, 'Gen_G'),
-            (4, 'NongShim_REDFORCE'),
-            (5, 'Liiv_SANDBOX'),
-            (6, 'Afreeca Freecs'),
-            (7, 'kt Rolster'),
-            (8, 'Hanwha_Life_Esports'),
-            (9, 'Fredit_BRION'),
-            (10, 'DRX')
+        (1, 'DWF_KIA'),
+        (2, 'T1'),
+        (3, 'Gen_G'),
+        (4, 'NongShim_REDFORCE'),
+        (5, 'Liiv_SANDBOX'),
+        (6, 'Afreeca Freecs'),
+        (7, 'kt Rolster'),
+        (8, 'Hanwha_Life_Esports'),
+        (9, 'Fredit_BRION'),
+        (10, 'DRX')
     )
     AGE_RANGE = (
         (1, '10대'),
@@ -42,7 +42,7 @@ class Group(models.Model):
 
     title = models.CharField(help_text="모임 제목", max_length=30)
     content = models.CharField(help_text="모임 내용", max_length=200)
-    url = models.URLField(max_length=200)
+    url = models.URLField(max_length=500)
     grade = models.IntegerField(choices=GRADE, blank=True, null=True)
     age_range = models.IntegerField(choices=AGE_RANGE, blank=True, null=True)
     cheer = models.IntegerField(choices=TEAM, blank=True, null=True)
@@ -66,8 +66,6 @@ class Group(models.Model):
             return True
         else :
             return False
-
-
 
 class JoinedMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
