@@ -66,13 +66,13 @@ class FilterMatch(APIView):
         cheer=request.GET.get('cheer', 0)
         gender=request.GET.get('gender', 0)
         if (grade):
-            group_queryset = group_queryset.filter(grade=grade)
+            group_queryset = group_queryset.filter(grade=grade)|group_queryset.filter(grade=None)
         if (age_range):
-            group_queryset = group_queryset.filter(age_range=age_range)
+            group_queryset = group_queryset.filter(age_range=age_range)|group_queryset.filter(age_range=None)
         if (cheer):
-            group_queryset = group_queryset.filter(cheer=cheer)
+            group_queryset = group_queryset.filter(cheer=cheer)|group_queryset.filter(cheer=None)
         if (gender):
-            group_queryset = group_queryset.filter(gender=gender)
+            group_queryset = group_queryset.filter(gender=gender)|group_queryset.filter(gender=None)
 
         group_list = []
         for group in group_queryset:
