@@ -86,7 +86,7 @@ class FilterMatch(APIView):
                 "cheer": group.cheer,
                 "gender": group.gender,
                 "created_at" :group.created_at.strftime(("%Y년 %m월 %d일")),
-                "organizer": group.organizer.user_id,
+                "organizer": group.organizer.username,
                 "joined_member_num" : group.joined_member_num(),
                 "status": group.is_joined(user_id)
             })
