@@ -59,7 +59,7 @@ class MatchList(APIView):
 class FilterMatch(APIView):
     def get(self, request):
         # try:
-        group_queryset = Group.objects.all()
+        group_queryset = Group.objects.all().order_by('-created_at')
         user_id=request.GET.get('user_id', '')
         grade=request.GET.get('grade', 0)
         age_range=request.GET.get('age_range', 0)
