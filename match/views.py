@@ -37,7 +37,7 @@ class MatchList(APIView):
         except:
             user_id = ""
         group_list = []
-        group_queryset = Group.objects.all()
+        group_queryset = Group.objects.all().order_by('-created_at')
         for group in group_queryset:
             group_list.append({
                 "group_id" : group.id,
