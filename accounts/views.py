@@ -37,7 +37,8 @@ class CustomUserCreate(APIView):
             newuser = User.objects.create(user_id=user_id,
                                           password=password,
                                           username=nickname)
-            return Response({"nickname": newuser.username})
+            return Response({"nickname": newuser.username,
+                             "user_id": newuser.user_id})
 
 class IsIDExist(APIView):
 
